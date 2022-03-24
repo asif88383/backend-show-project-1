@@ -26,34 +26,53 @@ const ethData = async() => {
         prices
     }
 }
-btcData();
+let BTCChart;
 
-const labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-];
+async function createBTCChart() {
+    let { times, prices } = await btcData();
+    console.log(times, prices)
+    let btcChart = document.getElementById('btcChart')
 
-const data = {
-    labels: labels,
-    datasets: [{
-        label: 'My First dataset',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: [0, 10, 5, 2, 20, 30, 45],
-    }]
-};
+    BTCChart = new Chart(btcChart, {
+        type: 'line',
+        data: {
+            labels: times,
+            datasets: [{
+                label: '$',
+                data: prices
+            }]
+        },
+    })
+}
 
-const config = {
-    type: 'line',
-    data: data,
-    options: {}
-};
+createBTCChart();
+// const labels = [
+//     'January',
+//     'February',
+//     'March',
+//     'April',
+//     'May',
+//     'June',
+// ];
 
-const myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-);
+
+// const data = {
+//     labels: labels,
+//     datasets: [{
+//         label: 'My First dataset',
+//         backgroundColor: 'rgb(255, 99, 132)',
+//         borderColor: 'rgb(255, 99, 132)',
+//         data: [0, 10, 5, 2, 20, 30, 45],
+//     }]
+// };
+
+// const config = {
+//     type: 'line',
+//     data: data,
+//     options: {}
+// };
+
+// const myChart = new Chart(
+//     document.getElementById('myChart'),
+//     config
+// );
