@@ -11,13 +11,20 @@
 
 <body>
 
-
-
-    <div>
-        <canvas id="btcChart"></canvas>
-    </div>
-
-
+    <container class="container">
+        <cards class="card">
+            <bitcoin style="width:30%" class="btc">
+                <div class="title">
+                    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" style="width:10%">
+                    <h1>Bitcoin</h1>
+                </div>
+                <div class="price">
+                    <h2 class="price-btc" id="btcPrice"></h2>
+                </div>
+                <canvas id="btcChart"></canvas>
+            </bitcoin>
+        </cards>
+    </container>
     <script src="app.js"></script>
 </body>
 

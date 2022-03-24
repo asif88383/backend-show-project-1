@@ -30,19 +30,56 @@ let BTCChart;
 
 async function createBTCChart() {
     let { times, prices } = await btcData();
-    console.log(times, prices)
-    let btcChart = document.getElementById('btcChart')
+    let btcChart = document.getElementById('btcChart').getContext('2d');
+    let gradient = btcChart.createLinearGradient(0, 0, 0, 400)
 
+    gradient.addColorStop(0, 'rgba(247, 147, 26, .5)')
     BTCChart = new Chart(btcChart, {
         type: 'line',
         data: {
             labels: times,
             datasets: [{
                 label: '$',
-                data: prices
+                data: prices,
+                backgroundColor: gradient,
+                borderColor: '#f7931e',
+                borderWidth: 3,
+                borderJoinStyle: 'round',
+                pointHitRadius: 10,
+                borderCapStyle: 'round',
+                pointRadius: 0,
+                lineTension: .2,
             }]
         },
-    })
+        options: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: false,
+                text: 'Bitcoin Price'
+
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0
+                }
+            },
+            scales: {
+                yAxes: [{
+                    display: false,
+                    gridLines: {}
+                }],
+                xAxes: [{
+                    display: false,
+                    gridLines: {}
+                }]
+            },
+        }
+    });
 }
 
 createBTCChart();
