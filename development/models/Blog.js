@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
+import Bluebird from "bluebird";
+const { Schema } = mongoose;
 
-const Schema = mongoose.Schema;
+mongoose.Promise = Bluebird;
 
 const BlogSchema = new Schema({
     title: {

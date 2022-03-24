@@ -1,10 +1,10 @@
-import blog from '../models/blog';
+import db from '../models/blog.js';
 
-const BlogController = {}
+let blogController = {}
 
 blogController.post = (req, res) => {
     const { title, body, author } = req.body
-    const newblog = new blog.Blog({
+    const newblog = new db.Blog({
         title,
         body,
         author
@@ -27,17 +27,11 @@ blogController.post = (req, res) => {
 
 
 blogController.getAll = (req, res) => {
-    const { title, body, author } = req.body
-    const newblog = new blog.Blog({
-        title,
-        body,
-        author
-    });
-    newblog.save().then((newblog) => {
+    db.Blog.find().then((blogs) => {
         return res.status(200).json({
-            message: "Blog added successfully",
+            message: "All blogs",
             success: true,
-            data: newblog,
+            data: blogs
         });
     }).catch((err) => {
         return res.status(500).json({
@@ -47,3 +41,5 @@ blogController.getAll = (req, res) => {
         });
     });
 }
+
+export default blogController;
